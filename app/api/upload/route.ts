@@ -16,6 +16,7 @@ export async function POST(req: Request) {
     const beforeFiles = form.getAll("before") as File[];
     const afterFiles = form.getAll("after") as File[];
     const videoFiles = form.getAll("videos") as File[];
+    const photoFiles = form.getAll("photos") as File[];
 
     const uploadsDir = path.join(process.cwd(), "public", "uploads");
     await fs.mkdir(uploadsDir, { recursive: true });
@@ -32,13 +33,14 @@ export async function POST(req: Request) {
       return urls;
     }
 
-    const [beforeUrls, afterUrls, videoUrls] = await Promise.all([
+    const [beforeUrls, afterUrls, videoUrls, photoUrls] = await Promise.all([
       saveFiles(beforeFiles),
       saveFiles(afterFiles),
       saveFiles(videoFiles),
+      saveFiles(photoFiles),
     ]);
 
-    return NextResponse.json({ beforeUrls, afterUrls, videoUrls });
+    return NextResponse.json({ beforeUrls, afterUrls, videoUrls, photoUrls });
   } catch (e: any) {
     console.error("Upload error:", e);
     return NextResponse.json({ message: e.message || "Upload failed" }, { status: 500 });

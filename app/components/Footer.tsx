@@ -22,7 +22,7 @@ export default function Footer(){
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/RoyalAutoCollisionFresno"
                 aria-label="Facebook"
                 title="Facebook"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-600/50 text-brand-500 hover:text-white hover:bg-brand-600 shadow-glow transition"
@@ -34,7 +34,7 @@ export default function Footer(){
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/royalautocollision25"
                 aria-label="Instagram"
                 title="Instagram"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-600/50 text-brand-500 hover:text-white hover:bg-brand-600 shadow-glow transition"

@@ -65,6 +65,11 @@ export default function AdminDashboardPage() {
           <p className="text-white/70 mb-4">Approve or unapprove customer feedback.</p>
           <button className="btn btn-outline" onClick={() => router.push("/admin/testimonials")}>Manage Testimonials</button>
         </div>
+        <div className="card p-6">
+          <h2 className="text-xl font-semibold mb-2">Cars for Sale</h2>
+          <p className="text-white/70 mb-4">Upload vehicle photos and details to list on the site.</p>
+          <button className="btn btn-outline" onClick={() => router.push("/admin/cars")}>Upload a car</button>
+        </div>
       </div>
     </div>
   );

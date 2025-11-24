@@ -33,7 +33,7 @@ export default function Navbar(){
           <NavLink href="/about">About Us</NavLink>
           <NavLink href="/services">Services</NavLink>
           <NavLink href="/gallery">Gallery</NavLink>
-          <NavLink href="/map">Find Us</NavLink>
+          <NavLink href="/cars">Cars for Sale</NavLink>
           <NavLink href="/testimonials">Testimonials</NavLink>
           <NavLink href="/estimate">Free Estimate</NavLink>
         </nav>
@@ -53,7 +53,7 @@ export default function Navbar(){
             <NavLink href="/about">About Us</NavLink>
             <NavLink href="/services">Services</NavLink>
             <NavLink href="/gallery">Gallery</NavLink>
-            <NavLink href="/map">Find Us</NavLink>
+            <NavLink href="/cars">Cars for Sale</NavLink>
             <NavLink href="/testimonials">Testimonials</NavLink>
             <NavLink href="/estimate">Free Estimate</NavLink>
           </div>

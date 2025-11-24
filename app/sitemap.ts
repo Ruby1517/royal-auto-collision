@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/map",
     "/gallery",
     "/videos",
+    "/cars",
   ];
 
   const now = new Date();
