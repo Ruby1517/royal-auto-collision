@@ -1,11 +1,11 @@
 {
-  "/cars/page": "app/cars/page.js",
-  "/api/cars/route": "app/api/cars/route.js",
-  "/estimate/page": "app/estimate/page.js",
-  "/testimonials/page": "app/testimonials/page.js",
-  "/api/testimonials/route": "app/api/testimonials/route.js",
   "/gallery/page": "app/gallery/page.js",
+  "/page": "app/page.js",
+  "/api/admin/me/route": "app/api/admin/me/route.js",
+  "/api/admin/testimonials/route": "app/api/admin/testimonials/route.js",
   "/api/gallery/route": "app/api/gallery/route.js",
-  "/(admin)/admin/testimonials/page": "app/(admin)/admin/testimonials/page.js",
-  "/(admin)/admin/cars/page": "app/(admin)/admin/cars/page.js"
+  "/api/testimonials/route": "app/api/testimonials/route.js",
+  "/(admin)/admin/login/page": "app/(admin)/admin/login/page.js",
+  "/(admin)/admin/dashboard/page": "app/(admin)/admin/dashboard/page.js",
+  "/(admin)/admin/testimonials/page": "app/(admin)/admin/testimonials/page.js"
 }

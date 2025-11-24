@@ -36,11 +36,21 @@ export default function AdminTestimonialsPage() {
   }, [router, token]);
 
   async function load(status: "pending" | "approved" | "all") {
+    if (!token) {
+      router.replace("/admin/login");
+      return;
+    }
     setLoading(true);
     try {
-      const res = await fetch(`/api/admin/testimonials?status=${status}`, { cache: "no-store" });
+      const res = await fetch(`/api/admin/testimonials?status=${status}`, {
+        cache: "no-store",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) throw new Error("Failed to load");
       const data = await res.json();
       setItems(Array.isArray(data.items) ? data.items : []);
+    } catch {
+      setItems([]);
     } finally {
       setLoading(false);
     }
@@ -111,4 +121,3 @@ export default function AdminTestimonialsPage() {
     </div>
   );
 }
-
