@@ -1,11 +1,10 @@
 {
-  "/gallery/page": "app/gallery/page.js",
   "/page": "app/page.js",
-  "/api/admin/me/route": "app/api/admin/me/route.js",
-  "/api/admin/testimonials/route": "app/api/admin/testimonials/route.js",
+  "/api/estimates/route": "app/api/estimates/route.js",
   "/api/gallery/route": "app/api/gallery/route.js",
   "/api/testimonials/route": "app/api/testimonials/route.js",
   "/(admin)/admin/login/page": "app/(admin)/admin/login/page.js",
   "/(admin)/admin/dashboard/page": "app/(admin)/admin/dashboard/page.js",
-  "/(admin)/admin/testimonials/page": "app/(admin)/admin/testimonials/page.js"
+  "/(admin)/admin/testimonials/page": "app/(admin)/admin/testimonials/page.js",
+  "/(admin)/admin/estimates/page": "app/(admin)/admin/estimates/page.js"
 }

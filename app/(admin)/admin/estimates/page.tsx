@@ -120,8 +120,8 @@ export default function AdminEstimatesPage() {
               </div>
 
               {it.imageUrls && it.imageUrls.length > 0 && (
-                <div className="mt-3 grid grid-cols-3 gap-2">
-                  {it.imageUrls.slice(0, 6).map((url, i) => (
+                <div className="mt-3 grid grid-cols-4 md:grid-cols-6 gap-2">
+                  {it.imageUrls.slice(0, 8).map((url, i) => (
                     <button
                       key={i}
                       type="button"
@@ -136,7 +136,7 @@ export default function AdminEstimatesPage() {
                       aria-label="Open photo"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={url} alt="" className="w-full h-24 object-cover rounded-lg" />
+                      <img src={url} alt="" className="w-full aspect-square object-cover rounded-lg" />
                       <span className="pointer-events-none absolute inset-0 rounded-lg bg-black/0 group-hover:bg-black/20 transition" />
                     </button>
                   ))}
