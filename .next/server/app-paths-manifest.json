@@ -1,8 +1,10 @@
 {
   "/cars/page": "app/cars/page.js",
   "/estimate/page": "app/estimate/page.js",
-  "/api/upload/route": "app/api/upload/route.js",
-  "/api/cars/route": "app/api/cars/route.js",
+  "/page": "app/page.js",
+  "/api/gallery/route": "app/api/gallery/route.js",
+  "/api/testimonials/route": "app/api/testimonials/route.js",
+  "/testimonials/page": "app/testimonials/page.js",
   "/(admin)/admin/login/page": "app/(admin)/admin/login/page.js",
   "/(admin)/admin/dashboard/page": "app/(admin)/admin/dashboard/page.js",
   "/(admin)/admin/cars/page": "app/(admin)/admin/cars/page.js"
