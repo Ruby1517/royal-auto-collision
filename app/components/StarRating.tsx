@@ -1,5 +1,7 @@
 "use client";
 
+import type React from "react";
+
 type Props = {
   value: number; // current rating (can be fractional)
   max?: number; // total stars
@@ -32,7 +34,7 @@ export default function StarRating({
   emptyClassName = "text-white/30",
   ariaLabel,
 }: Props) {
-  const stars = [] as JSX.Element[];
+  const stars: React.ReactElement[] = [];
   for (let i = 1; i <= max; i++) {
     // Portion of this star to fill (0..1)
     const portion = Math.max(0, Math.min(1, value - (i - 1)));
@@ -62,4 +64,3 @@ export default function StarRating({
     </div>
   );
 }
-
