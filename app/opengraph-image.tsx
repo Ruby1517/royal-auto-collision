@@ -1,4 +1,4 @@
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
@@ -13,8 +13,8 @@ export default function Image() {
   let host = "";
   try { host = site ? new URL(site).host : ""; } catch {}
 
-  const title = "Royal Auto Collision";
-  const tagline = "Premium Collision Repair • Factory Finish";
+  const title = "Twin Auto Sale";
+  const tagline = "Clean-title vehicles | Fresno, CA";
 
   return new ImageResponse(
     (
@@ -49,7 +49,7 @@ export default function Image() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <div style={{ fontSize: 24, letterSpacing: 4, color: "#ffffffcc", textTransform: "uppercase" }}>
-            Since 2015 • Fresno, CA
+            Since 2015 | Fresno, CA
           </div>
           <div style={{ fontSize: 84, fontWeight: 800, lineHeight: 1.05 }}>
             {title}
@@ -70,4 +70,3 @@ export default function Image() {
     }
   );
 }
-
