@@ -25,7 +25,7 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
 export default function Navbar(){
   const [open, setOpen] = useState(false);
   return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur bg-ink/70 border-b border-white/10">
+    <header className="fixed top-0 inset-x-0 z-[200] backdrop-blur bg-ink/90 border-b border-white/10 shadow-lg">
       <div className="container-xl flex items-center justify-between py-3">
         <Logo />
         <nav className="hidden md:flex items-center gap-2">
