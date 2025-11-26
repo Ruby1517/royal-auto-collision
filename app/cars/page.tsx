@@ -27,14 +27,14 @@ async function getCars(): Promise<Car[]> {
 }
 
 export const metadata = {
-  title: "Cars for Sale | Royal Auto Collision",
-  description: "Browse clean-title vehicles for sale at Royal Auto Collision. See pricing, mileage, and contact us to schedule a test drive.",
+  title: "Cars for Sale | Twin Auto Sale",
+  description: "Browse clean-title vehicles for sale at Twin Auto Sale in Fresno. See pricing, mileage, and contact us to schedule a test drive.",
   alternates: { canonical: "/cars" },
   openGraph: {
-    title: "Cars for Sale | Royal Auto Collision",
-    description: "Clean-title vehicles ready for pickup. Contact us to see them in person.",
+    title: "Cars for Sale | Twin Auto Sale",
+    description: "Clean-title vehicles ready for pickup at Twin Auto Sale. Contact us to see them in person.",
     url: "/cars",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Royal Auto Collision vehicles for sale" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Twin Auto Sale vehicles for sale" }],
   },
 };
 
@@ -52,11 +52,16 @@ export default async function CarsForSalePage() {
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/70">Cars for Sale</p>
               <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-white">Clean-title vehicles, inspected and ready to drive.</h1>
               <p className="text-lg text-white/80 max-w-2xl">
-                Every car on this list is detailed, photographed, and ready for you to test drive at our Fresno shop. Call or message to lock in a viewing slot.
+                Every car on this list is detailed, photographed, and ready for you to test drive at our Fresno shop. Twin Auto Sale is ready to help you lock in a viewing slot.
               </p>
             <div className="flex flex-wrap gap-3">
-              <a href="tel:+15592864750" className="btn btn-primary">Call (559) 286-4750</a>
+              <a href="tel:+15594439694" className="btn btn-primary">Call (559) 443-9694</a>
               <Link href="/estimate" className="btn btn-outline">Message us</Link>
+            </div>
+            <div className="flex flex-wrap gap-3 text-sm text-white/80">
+              <span className="rounded-xl border border-white/15 bg-white/5 px-3 py-2">Twin Auto Sale</span>
+              <span className="rounded-xl border border-white/15 bg-white/5 px-3 py-2">4434 N Blackstone, Fresno, CA 93726</span>
+              <span className="rounded-xl border border-white/15 bg-white/5 px-3 py-2">(559) 443-9694</span>
             </div>
             <div className="grid sm:grid-cols-3 gap-4 text-white">
                 {[
@@ -112,7 +117,7 @@ export default async function CarsForSalePage() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-white">Available vehicles</h2>
             <p className="text-white/75 max-w-3xl">See something you like? Call and we&apos;ll have it staged for you to inspect. All units are clean title unless noted.</p>
           </div>
-          <a href="tel:+15592864750" className="btn btn-outline">Schedule a test drive</a>
+          <a href="tel:+15594439694" className="btn btn-outline">Schedule a test drive</a>
         </div>
 
         {hasCars ? (
@@ -159,7 +164,7 @@ export default async function CarsForSalePage() {
                     </div>
                   ) : null}
                   <div className="flex flex-wrap gap-3">
-                    <a href="tel:+15592864750" className="btn btn-primary">Call about this car</a>
+                    <a href="tel:+15594439694" className="btn btn-primary">Call about this car</a>
                     <Link href="/estimate" className="btn btn-outline">Request info</Link>
                   </div>
                 </div>
@@ -171,11 +176,58 @@ export default async function CarsForSalePage() {
             <div className="text-xl font-semibold mb-2">No vehicles listed yet</div>
             <p>Check back soon or call us to ask about incoming inventory.</p>
             <div className="flex gap-3 mt-4">
-              <a href="tel:+15592864750" className="btn btn-primary">Call the shop</a>
+              <a href="tel:+15594439694" className="btn btn-primary">Call the shop</a>
               <Link href="/estimate" className="btn btn-outline">Message us</Link>
             </div>
           </div>
         )}
+      </section>
+
+      <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-white/0 to-white/5 p-8 md:p-10">
+        <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] items-start">
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-[0.35em] text-white/60">Schedule</p>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">Book a test drive at Twin Auto Sale</h3>
+            <p className="text-white/75">
+              Let us know when you want to stop by and we&apos;ll stage the vehicle at the front of the lot with keys ready. Same-day appointments are welcome.
+            </p>
+            <div className="flex flex-wrap gap-3 text-sm text-white/85">
+              <span className="rounded-xl border border-white/15 bg-white/5 px-3 py-2 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-brand-500" aria-hidden />
+                Call: (559) 443-9694
+              </span>
+              <span className="rounded-xl border border-white/15 bg-white/5 px-3 py-2">4434 N Blackstone, Fresno, CA 93726</span>
+              <span className="rounded-xl border border-white/15 bg-white/5 px-3 py-2">Hours: Mon-Sat</span>
+            </div>
+          </div>
+          <div className="space-y-3 rounded-2xl border border-white/15 bg-black/40 p-6">
+            <div className="flex items-center justify-between text-white">
+              <div>
+                <div className="text-sm text-white/70">Quick booking</div>
+                <div className="text-xl font-semibold">Pick a time that works</div>
+              </div>
+              <div className="rounded-full bg-brand-500/20 px-3 py-1 text-sm font-semibold text-brand-100">No fee</div>
+            </div>
+            <ul className="space-y-2 text-sm text-white/80">
+              <li className="flex items-start gap-2">
+                <span className="mt-1 h-2 w-2 rounded-full bg-brand-500" aria-hidden />
+                Call or text us with your preferred date and vehicle.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1 h-2 w-2 rounded-full bg-brand-500" aria-hidden />
+                Bring your license and insurance for the test drive.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1 h-2 w-2 rounded-full bg-brand-500" aria-hidden />
+                We can send a walkaround video if you can&apos;t make it in.
+              </li>
+            </ul>
+            <div className="flex flex-wrap gap-3">
+              <a href="tel:+15594439694" className="btn btn-primary">Call to schedule</a>
+              <Link href="/estimate" className="btn btn-outline">Message for a slot</Link>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-10">
@@ -187,8 +239,8 @@ export default async function CarsForSalePage() {
               Call ahead so we can pull the vehicle up front, walk you through the condition, and provide Carfax documents and repair records.
             </p>
             <div className="flex flex-wrap gap-3 text-sm text-white/80">
-              <span className="rounded-xl border border-white/15 bg-white/5 px-3 py-2">2345 W Belmont Ave, Fresno, CA</span>
-              <span className="rounded-xl border border-white/15 bg-white/5 px-3 py-2">Showroom hours: Mon–Sat</span>
+              <span className="rounded-xl border border-white/15 bg-white/5 px-3 py-2">4434 N Blackstone, Fresno, CA 93726</span>
+              <span className="rounded-xl border border-white/15 bg-white/5 px-3 py-2">Showroom hours: Mon-Sat</span>
             </div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-black/40 p-6 space-y-3">
@@ -203,7 +255,7 @@ export default async function CarsForSalePage() {
               Bring your pre-approval or ask us for a purchase order—most banks accept our documentation. We also accept cashier&apos;s checks and credit union drafts.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a href="tel:+15592864750" className="btn btn-primary">Call finance desk</a>
+              <a href="tel:+15594439694" className="btn btn-primary">Call finance desk</a>
               <Link href="/estimate" className="btn btn-outline">Send pre-approval</Link>
             </div>
           </div>
