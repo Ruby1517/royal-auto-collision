@@ -1,9 +1,10 @@
 import Link from "next/link";
 import TestimonialsSlider from "@/app/components/TestimonialsSlider";
 import StarRating from "@/app/components/StarRating";
+import { getSiteUrl } from "@/lib/siteUrl";
 
 async function getTestimonials() {
-  const base = process.env.NEXT_PUBLIC_BASE_URL ?? "";
+  const base = getSiteUrl();
   try {
     const res = await fetch(`${base}/api/testimonials`, { cache: "no-store" });
     if (!res.ok) return [] as Array<{ name: string; text: string; rating?: number }>;
@@ -17,7 +18,7 @@ async function getTestimonials() {
 export default async function Testimonials(){
   const items = await getTestimonials();
   const ratings = items
-    .map((t) => (typeof t.rating === 'number' ? t.rating : null))
+    .map((t) => (typeof t.rating === "number" ? t.rating : null))
     .filter((n): n is number => Number.isFinite(n));
   const count = ratings.length;
   const avg = count ? ratings.reduce((a, b) => a + b, 0) / count : 0;
@@ -28,7 +29,7 @@ export default async function Testimonials(){
       {count > 0 && (
         <div className="mb-6 flex items-center gap-3">
           <StarRating value={rounded} className="flex gap-1" ariaLabel={`${rounded} out of 5 stars`} />
-          <div className="text-white/80 text-sm">{avg.toFixed(1)} / 5 • {count} {count === 1 ? 'review' : 'reviews'}</div>
+          <div className="text-white/80 text-sm">{avg.toFixed(1)} / 5 | {count} {count === 1 ? "review" : "reviews"}</div>
         </div>
       )}
       {items.length === 0 ? (

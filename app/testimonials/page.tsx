@@ -1,17 +1,18 @@
 import FeedbackForm from "@/app/components/FeedbackForm";
 import StarRating from "@/app/components/StarRating";
 import TestimonialsSlider from "@/app/components/TestimonialsSlider";
+import { getSiteUrl } from "@/lib/siteUrl";
 
 type Testimonial = { _id: string; name: string; text: string; rating?: number };
 
 export const metadata = {
-  title: "Testimonials | Twin Auto Sale",
+  title: "Testimonials - Royal Auto Collision",
   description: "Read real customer reviews about our collision repair quality and service.",
   alternates: { canonical: "/testimonials" },
 };
 
 async function getTestimonials(): Promise<Testimonial[]> {
-  const base = process.env.NEXT_PUBLIC_BASE_URL ?? "";
+  const base = getSiteUrl();
   const res = await fetch(`${base}/api/testimonials`, { cache: "no-store" });
   if (!res.ok) return [];
   return res.json() as Promise<Testimonial[]>;

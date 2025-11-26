@@ -1,11 +1,12 @@
 import Script from "next/script";
 import EstimateForm from "@/app/components/EstimateForm";
+import { getSiteUrl } from "@/lib/siteUrl";
 
-const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://royal-auto-collision.com";
+const siteUrl = getSiteUrl();
 
 export const metadata = {
-  title: "Free Estimate — Royal Auto Collision",
-  description: "Request a fast, free repair estimate. Upload photos and details — we’ll respond quickly.",
+  title: "Free Estimate - Royal Auto Collision",
+  description: "Request a fast, free repair estimate. Upload photos and details - we'll respond quickly.",
   keywords: [
     "online collision estimate",
     "free auto body quote",
@@ -63,7 +64,7 @@ export default function EstimatePage() {
           }}
         />
         <h1 className="text-4xl md:text-5xl font-extrabold mb-6">Free Estimate</h1>
-        <p className="text-white/80 mb-8">Tell us a bit about the vehicle and damage. We’ll reach out shortly.</p>
+        <p className="text-white/80 mb-8">Tell us a bit about the vehicle and damage. We'll reach out shortly.</p>
         <EstimateForm />
       </div>
     </section>

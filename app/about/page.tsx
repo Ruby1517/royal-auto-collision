@@ -1,13 +1,14 @@
 import Script from "next/script";
+import { getSiteUrl } from "@/lib/siteUrl";
 
 export const metadata = {
-  title: "About Us — Royal Auto Collision",
+  title: "About Us - Royal Auto Collision",
   description:
-    "Learn about our family‑owned collision repair shop in Fresno, CA. OEM repair methods, computer‑matched paint, insurance coordination, and lifetime paint warranty.",
+    "Learn about our family-owned collision repair shop in Fresno, CA. OEM repair methods, computer-matched paint, insurance coordination, and lifetime paint warranty.",
   alternates: { canonical: "/about" },
 };
 
-const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export default function AboutPage() {
   return (
@@ -33,7 +34,7 @@ export default function AboutPage() {
           <h2 className="text-3xl md:text-4xl font-extrabold mb-6">Our Story</h2>
           <p className="text-white/80 mb-6 max-w-3xl">
             We are a Fresno-based auto body and collision repair center dedicated to restoring your
-            vehicle’s safety, performance, and showroom-quality finish. Our team follows
+            vehicle&apos;s safety, performance, and showroom-quality finish. Our team follows
             OEM-approved repair procedures, utilizes precision measuring and frame equipment,
             and applies computer-matched refinishing to achieve a true factory-level result.
           </p>
@@ -45,19 +46,19 @@ export default function AboutPage() {
             <div className="card p-6">
               <h2 className="text-2xl font-semibold mb-2">Our Promise</h2>
               <ul className="space-y-2 text-white/85">
-                <li>• Clear communication and status updates</li>
-                <li>• Insurance coordination to save you time</li>
-                <li>• OEM repair methods and quality parts guidance</li>
-                <li>• Lifetime paint warranty for as long as you own the vehicle</li>
+                <li>Clear communication and status updates</li>
+                <li>Insurance coordination to save you time</li>
+                <li>OEM repair methods and quality parts guidance</li>
+                <li>Lifetime paint warranty for as long as you own the vehicle</li>
               </ul>
             </div>
             <div className="card p-6">
               <h2 className="text-2xl font-semibold mb-2">What We Do</h2>
               <ul className="space-y-2 text-white/85">
-                <li>• Collision and structural repairs</li>
-                <li>• Bumper, dent, and scratch repair</li>
-                <li>• Computer color‑matched paint and refinishing</li>
-                <li>• Headlight restoration and glass assistance</li>
+                <li>Collision and structural repairs</li>
+                <li>Bumper, dent, and scratch repair</li>
+                <li>Computer color-matched paint and refinishing</li>
+                <li>Headlight restoration and glass assistance</li>
               </ul>
             </div>
           </div>
@@ -68,7 +69,7 @@ export default function AboutPage() {
               <p className="text-white/80">We work with most major insurers and keep you updated from estimate to delivery.</p>
             </div>
             <div className="card p-6">
-              <h3 className="text-xl font-semibold mb-1">Factory‑Level Finish</h3>
+              <h3 className="text-xl font-semibold mb-1">Factory-Level Finish</h3>
               <p className="text-white/80">OEM repair methods, precise measurements, and paint matched to your VIN/spec.</p>
             </div>
           </div>

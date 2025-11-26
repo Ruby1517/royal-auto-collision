@@ -1,8 +1,9 @@
 import Link from "next/link";
 import HeroSlider from "@/app/components/HeroSlider";
+import { getSiteUrl } from "@/lib/siteUrl";
 
 async function getSlides() {
-  const base = process.env.NEXT_PUBLIC_BASE_URL ?? "";
+  const base = getSiteUrl();
   const res = await fetch(`${base}/api/gallery`, { cache: "no-store" });
   if (!res.ok) return [] as Array<{ title: string; before?: string; after?: string; video?: string }>;
   const items: Array<{
@@ -59,10 +60,10 @@ export default async function Hero() {
             <div className="card p-6 shadow-[0_0_45px_rgba(239,68,68,0.25)]">
               <h2 className="text-xl font-semibold mb-3">Why Drivers Choose Us</h2>
               <ul className="space-y-2 text-white/85">
-                <li>• OEM repair methods and parts guidance</li>
-                <li>• Computer color‑matched refinishing</li>
-                <li>• Insurance coordination and status updates</li>
-                <li>• Lifetime paint warranty</li>
+                <li>- OEM repair methods and parts guidance</li>
+                <li>- Computer color-matched refinishing</li>
+                <li>- Insurance coordination and status updates</li>
+                <li>- Lifetime paint warranty</li>
               </ul>
             </div>
           </div>

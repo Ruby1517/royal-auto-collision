@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getSiteUrl } from "@/lib/siteUrl";
 
 type Car = {
   _id: string;
@@ -16,7 +17,7 @@ type Car = {
 };
 
 async function getCars(): Promise<Car[]> {
-  const base = process.env.NEXT_PUBLIC_BASE_URL || "";
+  const base = getSiteUrl();
   try {
     const res = await fetch(`${base}/api/cars`, { cache: "no-store" });
     if (!res.ok) return [];

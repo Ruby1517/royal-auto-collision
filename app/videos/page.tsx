@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { getSiteUrl } from "@/lib/siteUrl";
 
 // Fetch all gallery items and flatten their videos
 async function getVideos() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL ?? ""}/api/gallery`, {
+  const base = getSiteUrl();
+  const res = await fetch(`${base}/api/gallery`, {
     cache: "no-store",
   });
   if (!res.ok) return [] as Array<{ url: string; title: string; itemTitle: string }>;
@@ -54,7 +56,7 @@ export default async function VideoGalleryPage() {
   );
 }
 export const metadata = {
-  title: "Video Gallery — Royal Auto Collision",
+  title: "Video Gallery - Royal Auto Collision",
   description: "Watch short clips of repairs, paintwork, and shop walk-throughs.",
   alternates: { canonical: "/videos" },
 };

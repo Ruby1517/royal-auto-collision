@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getSiteUrl } from "@/lib/siteUrl";
 
 type GalleryItem = {
   _id: string;
@@ -12,7 +13,7 @@ type GalleryItem = {
 
 async function getGallery(limit = 6): Promise<GalleryItem[]> {
   // same-origin call; no-store so new uploads appear
-  const base = process.env.NEXT_PUBLIC_BASE_URL ?? "";
+  const base = getSiteUrl();
   const res = await fetch(`${base}/api/gallery?limit=${limit}`, {
     cache: "no-store",
   });

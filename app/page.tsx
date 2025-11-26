@@ -1,10 +1,13 @@
+import Script from "next/script";
 import Hero from "@/app/components/Hero";
 import ServiceCards from "@/app/components/ServiceCards";
 import BeforeAfter from "@/app/components/BeforeAfter";
 import MapPreview from "@/app/components/MapPreview";
 import Testimonials from "@/app/components/Testimonials";
 import CTASection from "@/app/components/CTASection";
-import Script from "next/script";
+import { getSiteUrl } from "@/lib/siteUrl";
+
+const siteUrl = getSiteUrl();
 
 export default function HomePage() {
   return (
@@ -15,10 +18,10 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "Royal Auto Collision",
-            url: process.env.NEXT_PUBLIC_BASE_URL || "https://royal-auto-collision.com",
+            url: siteUrl,
             potentialAction: {
               "@type": "SearchAction",
-              target: `${process.env.NEXT_PUBLIC_BASE_URL || "https://royal-auto-collision.com"}/search?q={search_term_string}`,
+              target: `${siteUrl}/search?q={search_term_string}`,
               "query-input": "required name=search_term_string"
             }
           })
@@ -34,7 +37,7 @@ export default function HomePage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: process.env.NEXT_PUBLIC_BASE_URL || "https://royal-auto-collision.com"
+                item: siteUrl
               }
             ]
           })
@@ -56,8 +59,9 @@ export default function HomePage() {
     </>
   );
 }
+
 export const metadata = {
-  title: "Royal Auto Collision — Collision Repair & Body Shop",
+  title: "Royal Auto Collision - Collision Repair & Body Shop",
   description: "Auto body and collision repair in Fresno, CA. Free estimates, fast turnaround, OEM paint match, and insurance assistance.",
   keywords: [
     "auto body shop Fresno",
@@ -68,7 +72,7 @@ export const metadata = {
     "free collision estimate"
   ],
   openGraph: {
-    title: "Royal Auto Collision — Collision Repair & Body Shop",
+    title: "Royal Auto Collision - Collision Repair & Body Shop",
     description: "Trusted Fresno collision center offering OEM-grade paint match, frame repair, and insurance-friendly estimates.",
     url: "/",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Royal Auto Collision" }],

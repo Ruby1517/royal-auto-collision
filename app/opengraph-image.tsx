@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { getSiteUrl } from "@/lib/siteUrl";
 
 export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
@@ -9,7 +10,7 @@ const RED = "#dc2626";        // brand red (tailwind brand-600)
 const LIGHT = "#f8fafc";      // near-white
 
 export default function Image() {
-  const site = process.env.NEXT_PUBLIC_BASE_URL || "";
+  const site = getSiteUrl();
   let host = "";
   try { host = site ? new URL(site).host : ""; } catch {}
 

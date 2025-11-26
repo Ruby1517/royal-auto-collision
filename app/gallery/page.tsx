@@ -1,11 +1,15 @@
 import Link from "next/link";
 import Script from "next/script";
 import GalleryTabs from "@/app/components/GalleryTabs";
+import { getSiteUrl } from "@/lib/siteUrl";
+
+const siteUrl = getSiteUrl();
 
 // server component: fetch data on the server
 async function getItems() {
   // Same-origin API call; no caching so new uploads appear
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL ?? ""}/api/gallery`, {
+  const base = getSiteUrl();
+  const res = await fetch(`${base}/api/gallery`, {
     cache: "no-store",
   });
   if (!res.ok) return [];
@@ -31,7 +35,6 @@ export default async function GalleryPage() {
     0
   );
   const hasItems = items.length > 0;
-  const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://royal-auto-collision.com";
 
   const highlights = [
     {
@@ -149,7 +152,7 @@ export default async function GalleryPage() {
           <div>
             <p className="text-xs uppercase tracking-[0.35em] text-white/60">Gallery</p>
             <h2 className="text-3xl md:text-4xl font-extrabold">Before & after library</h2>
-            <p className="text-white/75 max-w-3xl">Browse completed repairs from Fresno drivers—no stock photos. Tap any set to view the full sequence.</p>
+            <p className="text-white/75 max-w-3xl">Browse completed repairs from Fresno drivers - no stock photos. Tap any set to view the full sequence.</p>
           </div>
           <div className="flex flex-wrap gap-2 text-sm">
             <span className="rounded-full border border-white/15 px-3 py-1 text-white/75">{items.length} repair stories</span>
@@ -174,8 +177,9 @@ export default async function GalleryPage() {
     </div>
   );
 }
+
 export const metadata = {
-  title: "Before & After — Royal Auto Collision",
+  title: "Before & After - Royal Auto Collision",
   description: "See our collision repair results: before-and-after photos of real work.",
   keywords: [
     "collision repair before and after",

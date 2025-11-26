@@ -7,7 +7,7 @@ A modern, fast-loading website for an auto body & collision repair shop.
 ```bash
 npm install
 npm run dev
-# open http://localhost:3000
+
 ```
 
 ## Tech

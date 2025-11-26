@@ -3,15 +3,15 @@ import "./globals.css";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import Script from "next/script";
+import { getSiteUrl } from "@/lib/siteUrl";
 
-
-const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Royal Auto Collision — Collision Repair & Body Shop",
-    template: "%s — Royal Auto Collision"
+    default: "Royal Auto Collision - Collision Repair & Body Shop",
+    template: "%s - Royal Auto Collision"
   },
   description:
     "Premium auto body & collision repair in Fresno, CA. Free estimate, fast turnaround, OEM-matched paint, and insurance handling.",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Royal Auto Collision — Collision repair in Fresno, CA",
+        alt: "Royal Auto Collision - Collision repair in Fresno, CA",
       },
     ],
   },
