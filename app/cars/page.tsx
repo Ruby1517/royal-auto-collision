@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getSiteUrl } from "@/lib/siteUrl";
+import CarCard from "@/app/components/CarCard";
 
 type Car = {
   _id: string;
@@ -79,28 +80,7 @@ export default async function CarsForSalePage() {
           </div>
           {featured ? (
             <div className="relative">
-              <div className="rounded-3xl border border-white/10 bg-black/40 p-2 shadow-lg">
-                <div className="overflow-hidden rounded-2xl">
-                  <Image
-                    src={featured.photos[0]}
-                    alt={featured.name}
-                    width={1200}
-                    height={800}
-                    className="h-80 w-full object-cover"
-                    priority
-                  />
-                </div>
-                <div className="p-4 text-white space-y-1">
-                  <div className="text-sm uppercase tracking-wide text-white/70">Featured</div>
-                  <div className="flex items-center justify-between">
-                    <div className="text-xl font-semibold">{featured.name}</div>
-                    <div className="rounded-full bg-brand-500/20 px-3 py-1 text-sm font-semibold text-brand-100">
-                      {featured.price || "Call for price"}
-                    </div>
-                  </div>
-                  <div className="text-sm text-white/70">{featured.drivetrain || featured.mileage || ""}</div>
-                </div>
-              </div>
+              <CarCard car={featured} featured />
             </div>
           ) : (
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6 text-white/80">
@@ -122,54 +102,9 @@ export default async function CarsForSalePage() {
         </div>
 
         {hasCars ? (
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {cars.map((car) => (
-              <article key={car._id} className="card overflow-hidden border border-white/10 bg-white/5">
-                <div className="relative">
-                  <Image
-                    src={car.photos[0]}
-                    alt={car.name}
-                    width={1400}
-                    height={900}
-                    className="h-72 w-full object-cover"
-                  />
-                  <div className="absolute top-3 left-3 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold text-white">
-                    {car.price || "Call for price"}
-                  </div>
-                </div>
-                <div className="p-5 space-y-3">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <div className="text-xs uppercase text-white/60">{car.color || "Available"}</div>
-                      <h3 className="text-xl font-semibold text-white">{car.name}</h3>
-                    </div>
-                    {car.vin ? (
-                      <div className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
-                        VIN ending {car.vin.slice(-6)}
-                      </div>
-                    ) : null}
-                  </div>
-                  <div className="flex flex-wrap gap-2 text-sm text-white/75">
-                    {car.mileage && <span className="rounded-full border border-white/15 px-3 py-1">{car.mileage}</span>}
-                    {car.drivetrain && <span className="rounded-full border border-white/15 px-3 py-1">{car.drivetrain}</span>}
-                    {car.location && <span className="rounded-full border border-white/15 px-3 py-1">{car.location}</span>}
-                  </div>
-                  {car.highlights?.length ? (
-                    <div className="grid grid-cols-2 gap-2 text-sm text-white/80">
-                      {car.highlights.map((item) => (
-                        <div key={item} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-                          <span className="h-2 w-2 rounded-full bg-brand-500" aria-hidden />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : null}
-                  <div className="flex flex-wrap gap-3">
-                    <a href="tel:+15594439694" className="btn btn-primary">Call about this car</a>
-                    <Link href="/estimate" className="btn btn-outline">Request info</Link>
-                  </div>
-                </div>
-              </article>
+              <CarCard key={car._id} car={car} />
             ))}
           </div>
         ) : (

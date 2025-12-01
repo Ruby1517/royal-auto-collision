@@ -29,6 +29,16 @@ export default function UploadBeforeAfter() {
     [videos]
   );
 
+  const removeBefore = (idx: number) => {
+    setBeforeFiles((prev) => prev.filter((_, i) => i !== idx));
+    if (beforePreviews[idx]) URL.revokeObjectURL(beforePreviews[idx]);
+  };
+
+  const removeAfter = (idx: number) => {
+    setAfterFiles((prev) => prev.filter((_, i) => i !== idx));
+    if (afterPreviews[idx]) URL.revokeObjectURL(afterPreviews[idx]);
+  };
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setMsg(null);
@@ -143,8 +153,18 @@ export default function UploadBeforeAfter() {
           ) : (
             <div className="grid grid-cols-3 gap-2">
               {beforePreviews.map((src, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img key={i} src={src} alt="" className="rounded-lg object-cover w-full h-24" />
+                <div key={i} className="relative rounded-lg overflow-hidden border border-white/10">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt="" className="object-cover w-full h-24" />
+                  <button
+                    type="button"
+                    onClick={() => removeBefore(i)}
+                    className="absolute top-1 right-1 h-6 w-6 rounded-full bg-red-600/70 text-white text-sm font-bold border border-white/30"
+                    aria-label="Remove before image"
+                  >
+                    X
+                  </button>
+                </div>
               ))}
             </div>
           )}
@@ -175,8 +195,18 @@ export default function UploadBeforeAfter() {
           ) : (
             <div className="grid grid-cols-3 gap-2">
               {afterPreviews.map((src, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img key={i} src={src} alt="" className="rounded-lg object-cover w-full h-24" />
+                <div key={i} className="relative rounded-lg overflow-hidden border border-white/10">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt="" className="object-cover w-full h-24" />
+                  <button
+                    type="button"
+                    onClick={() => removeAfter(i)}
+                    className="absolute top-1 right-1 h-6 w-6 rounded-full bg-red-600/70 text-white text-sm font-bold border border-white/30"
+                    aria-label="Remove after image"
+                  >
+                    X
+                  </button>
+                </div>
               ))}
             </div>
           )}
