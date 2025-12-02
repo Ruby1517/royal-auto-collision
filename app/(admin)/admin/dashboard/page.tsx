@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { clearAdminToken, getAdminToken } from "@/lib/clientAuth";
-import UploadBeforeAfter from "../../../components/admin/UploadbeforeAfter";
 
 type Admin = { email: string; role: "admin" | "user"; createdAt?: string };
 
@@ -189,10 +188,13 @@ export default function AdminDashboardPage() {
               <p className="text-white/70 mb-4">Review pending requests and mark them completed.</p>
               <button className="btn btn-primary" onClick={() => router.push("/admin/estimates")}>Open Estimates</button>
             </div>
-              <div className="card p-6">
-                <h2 className="text-xl font-semibold mb-4">Upload Before & After</h2>
-                <UploadBeforeAfter />
-              </div>
+            <div className="card p-6">
+              <h2 className="text-xl font-semibold mb-2">Upload Before & After</h2>
+              <p className="text-white/70 mb-4">Add new before/after sets with images and videos.</p>
+              <button className="btn btn-primary" onClick={() => router.push("/admin/upload-before-after")}>
+                Go to upload
+              </button>
+            </div>
             <div className="card p-6">
               <h2 className="text-xl font-semibold mb-2">Manage Before & After</h2>
               <p className="text-white/70 mb-4">Edit or delete gallery items and attached videos.</p>
