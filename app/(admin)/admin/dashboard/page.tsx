@@ -19,7 +19,7 @@ export default function AdminDashboardPage() {
   const nav = [
     { href: "/admin/dashboard", label: "Dashboard" },
     { href: "/admin/estimates", label: "Estimates" },
-    { href: "/admin/gallery", label: "Before & After" },
+    { href: "/admin/gallery", label: "Before & After Library" },
     { href: "/admin/upload-before-after", label: "Upload Before & After" },
     { href: "/admin/cars", label: "Cars for Sale" },
     { href: "/admin/testimonials", label: "Testimonials" },

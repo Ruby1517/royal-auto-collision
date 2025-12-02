@@ -20,6 +20,24 @@ export default function AdminGalleryPage() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<GalleryItem | null>(null);
   const [saving, setSaving] = useState(false);
+  const removeMedia = (kind: "before" | "after", index: number) => {
+    if (!editing) return;
+    if (kind === "before") {
+      const next = [...editing.beforeMedia];
+      next.splice(index, 1);
+      setEditing({ ...editing, beforeMedia: next });
+    } else {
+      const next = [...editing.afterMedia];
+      next.splice(index, 1);
+      setEditing({ ...editing, afterMedia: next });
+    }
+  };
+  const removeVideo = (index: number) => {
+    if (!editing) return;
+    const next = [...(editing.videos || [])];
+    next.splice(index, 1);
+    setEditing({ ...editing, videos: next });
+  };
 
   useEffect(() => {
     async function ensureAdmin() {
@@ -164,6 +182,58 @@ export default function AdminGalleryPage() {
             />
           </div>
           <div className="grid md:grid-cols-2 gap-3">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="block text-sm">Before media</label>
+                <span className="text-xs text-white/60">{editing.beforeMedia.length} items</span>
+              </div>
+              {editing.beforeMedia.length === 0 ? (
+                <div className="text-white/60 text-sm">No before media.</div>
+              ) : (
+                <div className="grid grid-cols-2 gap-2">
+                  {editing.beforeMedia.map((url, idx) => (
+                    <div key={`${url}-${idx}`} className="relative overflow-hidden rounded-lg border border-white/10">
+                      <button
+                        type="button"
+                        className="absolute right-2 top-2 z-10 rounded-full bg-black/70 px-2 text-xs hover:bg-black/90"
+                        onClick={() => removeMedia("before", idx)}
+                        aria-label="Remove"
+                      >
+                        ×
+                      </button>
+                      <img src={url} alt={`Before ${idx + 1}`} className="h-28 w-full object-cover" />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="block text-sm">After media</label>
+                <span className="text-xs text-white/60">{editing.afterMedia.length} items</span>
+              </div>
+              {editing.afterMedia.length === 0 ? (
+                <div className="text-white/60 text-sm">No after media.</div>
+              ) : (
+                <div className="grid grid-cols-2 gap-2">
+                  {editing.afterMedia.map((url, idx) => (
+                    <div key={`${url}-${idx}`} className="relative overflow-hidden rounded-lg border border-white/10">
+                      <button
+                        type="button"
+                        className="absolute right-2 top-2 z-10 rounded-full bg-black/70 px-2 text-xs hover:bg-black/90"
+                        onClick={() => removeMedia("after", idx)}
+                        aria-label="Remove"
+                      >
+                        ×
+                      </button>
+                      <img src={url} alt={`After ${idx + 1}`} className="h-28 w-full object-cover" />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm mb-1">Before (one per line)</label>
               <textarea
@@ -182,6 +252,32 @@ export default function AdminGalleryPage() {
                 onChange={(e) => setEditing({ ...editing, afterMedia: e.target.value.split("\n").map((s) => s.trim()).filter(Boolean) })}
               />
             </div>
+          </div>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="block text-sm">Videos</label>
+              <span className="text-xs text-white/60">{(editing.videos || []).length} items</span>
+            </div>
+            {(editing.videos || []).length === 0 ? (
+              <div className="text-white/60 text-sm">No videos.</div>
+            ) : (
+              <div className="grid md:grid-cols-2 gap-2">
+                {(editing.videos || []).map((v, idx) => (
+                  <div key={`${v.url}-${idx}`} className="relative rounded-lg border border-white/10 bg-white/5 p-3">
+                    <button
+                      type="button"
+                      className="absolute right-2 top-2 z-10 rounded-full bg-black/70 px-2 text-xs hover:bg-black/90"
+                      onClick={() => removeVideo(idx)}
+                      aria-label="Remove video"
+                    >
+                      ×
+                    </button>
+                    <div className="text-sm font-semibold truncate">{v.title || "Untitled video"}</div>
+                    <div className="text-xs text-white/70 break-all">{v.url}</div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div>
             <label className="block text-sm mb-1">Videos (url|title per line)</label>
