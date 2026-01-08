@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { clearAdminToken, getAdminToken } from "@/lib/clientAuth";
+import { uploadFilesToFirebase } from "@/lib/uploadToFirebase";
 
 type GalleryItem = {
   _id: string;
@@ -20,6 +21,10 @@ export default function AdminGalleryPage() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<GalleryItem | null>(null);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState<{ before: boolean; after: boolean }>({
+    before: false,
+    after: false,
+  });
   const removeMedia = (kind: "before" | "after", index: number) => {
     if (!editing) return;
     if (kind === "before") {
@@ -111,6 +116,25 @@ export default function AdminGalleryPage() {
     }
   }
 
+  async function uploadMore(kind: "before" | "after", files: FileList | null) {
+    if (!editing || !files || files.length === 0) return;
+    setUploading((prev) => ({ ...prev, [kind]: true }));
+    try {
+      const folder = kind === "before" ? "before-after/before" : "before-after/after";
+      const urls = await uploadFilesToFirebase(Array.from(files), folder);
+      if (urls.length === 0) return;
+      if (kind === "before") {
+        setEditing((prev) => (prev ? { ...prev, beforeMedia: [...prev.beforeMedia, ...urls] } : prev));
+      } else {
+        setEditing((prev) => (prev ? { ...prev, afterMedia: [...prev.afterMedia, ...urls] } : prev));
+      }
+    } catch (e) {
+      alert("Upload failed. Check Firebase config and try again.");
+    } finally {
+      setUploading((prev) => ({ ...prev, [kind]: false }));
+    }
+  }
+
   return (
     <div className="container-xl py-10 space-y-6">
       <div className="flex items-center justify-between">
@@ -185,7 +209,20 @@ export default function AdminGalleryPage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="block text-sm">Before media</label>
-                <span className="text-xs text-white/60">{editing.beforeMedia.length} items</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-white/60">{editing.beforeMedia.length} items</span>
+                  <label className="btn btn-outline text-xs cursor-pointer">
+                    {uploading.before ? "Uploading..." : "Add before"}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      className="hidden"
+                      onChange={(e) => uploadMore("before", e.target.files)}
+                      disabled={uploading.before}
+                    />
+                  </label>
+                </div>
               </div>
               {editing.beforeMedia.length === 0 ? (
                 <div className="text-white/60 text-sm">No before media.</div>
@@ -210,7 +247,20 @@ export default function AdminGalleryPage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="block text-sm">After media</label>
-                <span className="text-xs text-white/60">{editing.afterMedia.length} items</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-white/60">{editing.afterMedia.length} items</span>
+                  <label className="btn btn-outline text-xs cursor-pointer">
+                    {uploading.after ? "Uploading..." : "Add after"}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      className="hidden"
+                      onChange={(e) => uploadMore("after", e.target.files)}
+                      disabled={uploading.after}
+                    />
+                  </label>
+                </div>
               </div>
               {editing.afterMedia.length === 0 ? (
                 <div className="text-white/60 text-sm">No after media.</div>

@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { getAdminToken } from "@/lib/clientAuth";
+import { uploadFilesToFirebase } from "@/lib/uploadToFirebase";
 
 export default function UploadBeforeAfter() {
   const [title, setTitle] = useState("");
@@ -47,19 +48,13 @@ export default function UploadBeforeAfter() {
       const token = getAdminToken();
       if (!token) throw new Error("Not logged in");
 
-      // 1) Upload files to /api/upload
-      const form = new FormData();
-      beforeFiles.forEach((f) => form.append("before", f));
-      afterFiles.forEach((f) => form.append("after", f));
-      videos.forEach((v) => form.append("videos", v.file));
-
-      const upRes = await fetch("/api/upload", { method: "POST", body: form });
-      const upData = await upRes.json();
-      if (!upRes.ok) throw new Error(upData.message || "Upload failed");
-
-      const beforeMedia: string[] = upData.beforeUrls || [];
-      const afterMedia: string[] = upData.afterUrls || [];
-      const videoUrls: string[] = upData.videoUrls || [];
+      // 1) Upload files directly to Firebase Storage
+      const beforeMedia: string[] = await uploadFilesToFirebase(beforeFiles, "before-after/before");
+      const afterMedia: string[] = await uploadFilesToFirebase(afterFiles, "before-after/after");
+      const videoUrls: string[] = await uploadFilesToFirebase(
+        videos.map((v) => v.file),
+        "before-after/videos"
+      );
 
       if (beforeMedia.length + afterMedia.length + videoUrls.length === 0) {
         throw new Error("Please include at least one image or video.");

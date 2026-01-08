@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { clearAdminToken, getAdminToken } from "@/lib/clientAuth";
 import UploadCar from "@/app/components/admin/UploadCar";
+import { uploadFilesToFirebase } from "@/lib/uploadToFirebase";
 
 type Admin = { email: string; role: "admin" | "user" };
 type Car = {
@@ -115,12 +116,7 @@ export default function AdminCarsPage() {
     if (!token) return router.replace("/admin/login");
     setPhotoUploading(true);
     try {
-      const form = new FormData();
-      Array.from(files).forEach((file) => form.append("photos", file));
-      const res = await fetch("/api/upload", { method: "POST", body: form });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Upload failed");
-      const photoUrls: string[] = data.photoUrls || [];
+      const photoUrls: string[] = await uploadFilesToFirebase(Array.from(files), "cars/photos");
       if (photoUrls.length === 0) return;
       setEditing((prev) => prev ? { ...prev, photos: [...(prev.photos || []), ...photoUrls] } : prev);
     } catch (err: any) {

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
+import { uploadFilesToFirebase } from "@/lib/uploadToFirebase";
 
 export default function EstimateForm(){
   const [submitted, setSubmitted] = useState(false);
@@ -16,12 +17,7 @@ export default function EstimateForm(){
       // 1) Upload photos selected (can be picked in multiple batches)
       let photoUrls: string[] = [];
       if (photos.length > 0) {
-        const up = new FormData();
-        photos.forEach((f) => up.append("before", f));
-        const upRes = await fetch("/api/upload", { method: "POST", body: up });
-        const upData = await upRes.json();
-        if (!upRes.ok) throw new Error(upData.message || "Photo upload failed");
-        photoUrls = upData.beforeUrls || [];
+        photoUrls = await uploadFilesToFirebase(photos, "estimates/photos");
       }
 
       // 2) Build payload and create estimate

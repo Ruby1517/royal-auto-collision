@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { getAdminToken } from "@/lib/clientAuth";
+import { uploadFilesToFirebase } from "@/lib/uploadToFirebase";
 
 type Msg = { type: "ok" | "err"; text: string } | null;
 
@@ -68,13 +69,8 @@ export default function UploadCar() {
       const token = getAdminToken();
       if (!token) throw new Error("Not logged in");
 
-      // Upload photos first
-      const form = new FormData();
-      photos.forEach((f) => form.append("photos", f));
-      const uploadRes = await fetch("/api/upload", { method: "POST", body: form });
-      const uploadData = await uploadRes.json();
-      if (!uploadRes.ok) throw new Error(uploadData.message || "Upload failed");
-      const photoUrls: string[] = uploadData.photoUrls || [];
+      // Upload photos to Firebase Storage
+      const photoUrls: string[] = await uploadFilesToFirebase(photos, "cars/photos");
       if (photoUrls.length === 0) throw new Error("Please add at least one photo.");
 
       const payload = {
