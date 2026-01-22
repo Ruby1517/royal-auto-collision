@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
-import Script from "next/script";
 import { getSiteUrl } from "@/lib/siteUrl";
 
 const siteUrl = getSiteUrl();
@@ -66,7 +65,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <Script id="ld-localbusiness" type="application/ld+json" strategy="afterInteractive"
+        <script
+          id="ld-localbusiness"
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -83,17 +84,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 addressCountry: "US"
               },
               telephone: "+1-559-286-4750",
-          openingHours: [
-            "Mo-Fr 07:00-16:00",
-            "Sa 09:00-14:00"
-          ],
-          priceRange: "$$",
-          sameAs: [
-            "https://www.tiktok.com/@royal.auto.collis",
-          ],
-        }),
-      }}
-    />
+              openingHours: [
+                "Mo-Fr 07:00-16:00",
+                "Sa 09:00-14:00"
+              ],
+              priceRange: "$$",
+              sameAs: [
+                "https://www.tiktok.com/@royal.auto.collis",
+              ],
+            }),
+          }}
+        />
         <Navbar />
         <main className="pt-16">{children}</main>
         <Footer />

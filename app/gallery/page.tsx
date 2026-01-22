@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Script from "next/script";
 import GalleryTabs from "@/app/components/GalleryTabs";
 import { getSiteUrl } from "@/lib/siteUrl";
 
@@ -53,7 +52,9 @@ export default async function GalleryPage() {
 
   return (
     <div className="container-xl py-20 space-y-12">
-      <Script id="ld-gallery-breadcrumb" type="application/ld+json" strategy="afterInteractive"
+      <script
+        id="ld-gallery-breadcrumb"
+        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
@@ -65,7 +66,9 @@ export default async function GalleryPage() {
           })
         }}
       />
-      <Script id="ld-gallery-collection" type="application/ld+json" strategy="afterInteractive"
+      <script
+        id="ld-gallery-collection"
+        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",

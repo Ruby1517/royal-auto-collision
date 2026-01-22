@@ -5,7 +5,6 @@ export const metadata = {
   alternates: { canonical: "/services" },
 };
 
-import Script from "next/script";
 
 export default function ServicesPage(){
   const items = [
@@ -27,7 +26,9 @@ export default function ServicesPage(){
           </div>
         ))}
       </div>
-      <Script id="ld-faq" type="application/ld+json" strategy="afterInteractive"
+      <script
+        id="ld-faq"
+        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",

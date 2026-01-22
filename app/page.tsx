@@ -1,4 +1,3 @@
-import Script from "next/script";
 import Hero from "@/app/components/Hero";
 import ServiceCards from "@/app/components/ServiceCards";
 import BeforeAfter from "@/app/components/BeforeAfter";
@@ -12,22 +11,21 @@ const siteUrl = getSiteUrl();
 export default function HomePage() {
   return (
     <>
-      <Script id="ld-website" type="application/ld+json" strategy="afterInteractive"
+      <script
+        id="ld-website"
+        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "Royal Auto Collision",
-            url: siteUrl,
-            potentialAction: {
-              "@type": "SearchAction",
-              target: `${siteUrl}/search?q={search_term_string}`,
-              "query-input": "required name=search_term_string"
-            }
+            url: siteUrl
           })
         }}
       />
-      <Script id="ld-breadcrumb" type="application/ld+json" strategy="afterInteractive"
+      <script
+        id="ld-breadcrumb"
+        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",

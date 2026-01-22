@@ -1,4 +1,3 @@
-import Script from "next/script";
 import { getSiteUrl } from "@/lib/siteUrl";
 
 export const metadata = {
@@ -76,7 +75,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Script id="ld-about" type="application/ld+json" strategy="afterInteractive"
+      <script
+        id="ld-about"
+        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",

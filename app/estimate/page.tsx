@@ -1,4 +1,3 @@
-import Script from "next/script";
 import EstimateForm from "@/app/components/EstimateForm";
 import { getSiteUrl } from "@/lib/siteUrl";
 
@@ -29,7 +28,9 @@ export default function EstimatePage() {
       <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 -right-10 h-80 w-80 rounded-full bg-brand-700/30 blur-3xl" />
       <div className="container-xl py-24 relative">
-        <Script id="ld-estimate-breadcrumb" type="application/ld+json" strategy="afterInteractive"
+        <script
+          id="ld-estimate-breadcrumb"
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -41,7 +42,9 @@ export default function EstimatePage() {
             })
           }}
         />
-        <Script id="ld-estimate-service" type="application/ld+json" strategy="afterInteractive"
+        <script
+          id="ld-estimate-service"
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
