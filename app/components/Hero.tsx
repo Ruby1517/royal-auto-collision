@@ -33,7 +33,7 @@ export default async function Hero() {
   const reasons = [
     "Computerized paint matching for seamless color blend",
     "Insurance support with clear milestone updates",
-    "Limited lifetime warranty on paint and workmanship",
+    "OEM repair methods and parts guidance",
   ];
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-ink via-slate-900 to-brand-900/40">
