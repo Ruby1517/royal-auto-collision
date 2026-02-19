@@ -33,7 +33,7 @@ export default function Footer(){
                 </svg>
               </a>
               <a
-                href="https://www.instagram.com/royalautocollision25"
+                href="https://www.instagram.com/royalautocollisionfresno"
                 aria-label="Instagram"
                 title="Instagram"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-600/50 text-brand-500 hover:text-white hover:bg-brand-600 shadow-glow transition"

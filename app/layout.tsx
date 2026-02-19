@@ -91,6 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               priceRange: "$$",
               sameAs: [
                 "https://www.tiktok.com/@royal.auto.collis",
+                "https://www.instagram.com/royalautocollisionfresno",
               ],
             }),
           }}
